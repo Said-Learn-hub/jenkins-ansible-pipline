@@ -1,8 +1,8 @@
-
 - name: install nginx
   hosts: all
-  become: yes
-  roles:
-    - nginx
-
-
+  gather_facts: false  # <-- Ajout de cette ligne
+  tasks:
+    - name: Ensure nginx is installed
+      apt:
+        name: nginx
+        state: present
