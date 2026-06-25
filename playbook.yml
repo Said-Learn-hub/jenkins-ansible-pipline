@@ -1,15 +1,8 @@
 - name: install nginx
   hosts: all
-  gather_facts: no  # Turn off initially if facts generation is also failing
-  
-  pre_tasks:
-    - name: Install python3-apt mapping raw
-      raw: apt-get update && apt-get install -y python3-apt
-      become: yes
+  gather_facts: no
 
   tasks:
-    - name: Ensure nginx is installed
-      apt:
-        name: nginx
-        state: present
+    - name: Ensure nginx is installed via raw commands
+      raw: apt-get update && apt-get install -y nginx
       become: yes
